@@ -21,6 +21,7 @@
 			</td>
 	<td><%= link_to f.title, book_path(f.id) %> </td>
  	<td><%= f.body %></td>
+ 	<td><%= render 'users/follow_form' %><td>
  	</tr>
 <% end %>
 </tbody>

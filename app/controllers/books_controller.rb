@@ -3,7 +3,7 @@ class BooksController < ApplicationController
    def new
   	@book = Book.new
   	@books = Book.page(params[:page]).reverse_order
-    @user = current_user
+    @user = User.find(params[:id])
   end
 
   def create
@@ -14,7 +14,6 @@ class BooksController < ApplicationController
   		redirect_to book_path(@book.id)
   	else
       @books = Book.page(params[:page]).reverse_order
-    @user = current_user
   		render :new
   	end
   end
@@ -27,7 +26,6 @@ class BooksController < ApplicationController
       redirect_to book_path(@book.id)
     else
       @books = Book.page(params[:page]).reverse_order
-    @user = current_user
       render :edit
     end
   end

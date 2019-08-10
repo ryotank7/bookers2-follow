@@ -48,7 +48,7 @@
 			<td><%= book_comment.comment %>
 			</td>
 			<% if book_comment.user == current_user %>
-			<td><%= link_to "destroy",book_book_comments_path(@book),  method: :delete, "data-confirm" => "本当に削除しますか？",class:"btn-sm btn-danger destroy_#{book_comment.id}" %></td>
+			<td><%= link_to "destroy",book_book_comments_path(book_comment.id),  method: :delete, "data-confirm" => "本当に削除しますか？",class:"btn-sm btn-danger destroy_#{book_comment.id}" %></td>
 			<% end %>
 			<% end %>
 		</tbody>
@@ -79,6 +79,6 @@
 				<br><%= favorite.user.name %>
 			</td>
 		</tr>
-	</table>
 	<% end %>
+</table>
 </div>

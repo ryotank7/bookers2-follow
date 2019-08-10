@@ -4,7 +4,6 @@ class UsersController < ApplicationController
   def index
     @book = Book.new
     @users = User.all
-    @user = current_user
   end
 
   def show
@@ -28,6 +27,16 @@ class UsersController < ApplicationController
     end
   end
 
+  def following
+    @user = User.find(params[:id])
+    @users = @user.following
+  end
+
+  def followers
+    @user =User.find(params[:id])
+    @users = @user.followers
+  end
+
   private
 def user_params
     params.require(:user).permit(:name,:email, :profile_image, :introduction)
@@ -35,6 +44,6 @@ end
 def correct_user
       @user = User.find(params[:id])
       redirect_to user_path(current_user) unless @user == current_user
-  end
+end
 
 end
