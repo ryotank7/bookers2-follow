@@ -1,5 +1,6 @@
 class BooksController < ApplicationController
   before_action :authenticate_user!
+  protect_from_forgery 
    def new
   	@book = Book.new
   	@books = Book.page(params[:page]).reverse_order
@@ -8,7 +9,6 @@ class BooksController < ApplicationController
 
   def create
   	@book = Book.new(book_params)
-  	@book.user_id = current_user.id
   	if @book.save
       flash[:notice] = "book was successfully created "
   		redirect_to book_path(@book.id)
